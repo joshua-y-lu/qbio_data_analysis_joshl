@@ -102,9 +102,7 @@ clinic_cleaned$days_to_death
 
 # Exercise 3.2
 # Create a death_event 
-death_event <- c(ifelse(clinic_cleaned$vital_status == "Alive", 0, 1))
-clinic_cleaned$death_event <- death_event
-clinic_cleaned
+clinic_cleaned$death_event <- c(ifelse(clinic_cleaned$vital_status == "Alive", 0, 1))
 
 # We initialize a 'survival' object first, which contains the data we need.
 surv_object <- Surv(time = clinic_cleaned$days_to_death, 
@@ -133,7 +131,10 @@ p
 ggsave("Documents/USC/QBIO/qbio_data_analysis_joshl/week4_clinical/kmplot_by_race.png", plot = p, width = 12, height = 9)
 
 # Exercise 3.3
-# 
+# The plot shows that Asian patients have the highest survival rate, and 
+# African Americans have the lowest survival rate. However, it seems that
+# there is not enough data to affirm the accuracy of survival rate for Asians
+# as the sample size seems to be smaller as opposed to other ethic groups.
 
 # Exercise 4.1
 write.csv(clinic, "Users/joshlu/Desktop/QBIO/qbio_data_analysis_joshl/week4_clinical/coad_clinical_data.csv", row.names = F)
